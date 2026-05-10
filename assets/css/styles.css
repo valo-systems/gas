@@ -1102,6 +1102,7 @@ main > section:nth-child(even):not(.bg-white) {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
   }
   .js .hero-badge,
   .js .hero-section h1,
@@ -1287,13 +1288,6 @@ main > section:nth-child(even):not(.bg-white) {
 .location-note i { color: #c47b00; }
 
 /* ---------- Utility ---------- */
-.divider-red {
-  width: 56px;
-  height: 4px;
-  background: var(--brand-red);
-  border-radius: 2px;
-  margin-bottom: 18px;
-}
 .shadow-soft { box-shadow: var(--shadow-md); }
 .rounded-xl { border-radius: 14px; }
 
@@ -1598,6 +1592,224 @@ iframe {
     display: inline-block;
   }
 }
+
+/* =============================================================
+   VISUAL UPLIFT — Polish, micro-interactions & motion
+   ============================================================= */
+
+/* ----- Trust items: individual hover lift within strip ----- */
+.trust-item {
+  border-radius: var(--radius-md);
+  padding: 12px 10px;
+  transition:
+    background-color var(--transition-fast),
+    transform       var(--transition-fast),
+    box-shadow      var(--transition-fast);
+}
+.trust-item:hover {
+  background: var(--grey-50);
+  box-shadow: 0 3px 10px rgba(7, 26, 44, 0.07);
+  transform: translateY(-2px);
+}
+.trust-item .ico {
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+.trust-item:hover .ico {
+  background: rgba(0, 59, 115, 0.16);
+  transform: scale(1.08);
+}
+
+/* ----- Proof card: image zoom on hover ----- */
+.proof-card img {
+  transition: transform 520ms cubic-bezier(.2, .8, .2, 1);
+}
+.proof-card:hover img {
+  transform: scale(1.04);
+}
+
+/* ----- Hero image: floating "Real refill point" badge ----- */
+.hero-img-float-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(7, 26, 44, 0.14);
+  pointer-events: none;
+}
+.hero-img-float-badge i {
+  color: var(--brand-green);
+  font-size: 0.88rem;
+}
+
+/* ----- Staggered scroll-reveal: price-grid direct children ----- */
+.price-grid > .reveal-on-scroll.is-visible:nth-child(2) { transition-delay:  60ms; }
+.price-grid > .reveal-on-scroll.is-visible:nth-child(3) { transition-delay: 120ms; }
+.price-grid > .reveal-on-scroll.is-visible:nth-child(4) { transition-delay: 180ms; }
+.price-grid > .reveal-on-scroll.is-visible:nth-child(5) { transition-delay: 240ms; }
+
+/* Stagger for side-by-side info-card / why-card rows */
+.row > [class*="col"]:nth-child(2) > .info-card.reveal-on-scroll.is-visible,
+.row > [class*="col"]:nth-child(2) > .why-card.reveal-on-scroll.is-visible  { transition-delay:  80ms; }
+.row > [class*="col"]:nth-child(3) > .info-card.reveal-on-scroll.is-visible,
+.row > [class*="col"]:nth-child(3) > .why-card.reveal-on-scroll.is-visible  { transition-delay: 160ms; }
+.row > [class*="col"]:nth-child(4) > .info-card.reveal-on-scroll.is-visible,
+.row > [class*="col"]:nth-child(4) > .why-card.reveal-on-scroll.is-visible  { transition-delay: 240ms; }
+.row > [class*="col"]:nth-child(5) > .info-card.reveal-on-scroll.is-visible,
+.row > [class*="col"]:nth-child(5) > .why-card.reveal-on-scroll.is-visible  { transition-delay: 320ms; }
+.row > [class*="col"]:nth-child(6) > .info-card.reveal-on-scroll.is-visible,
+.row > [class*="col"]:nth-child(6) > .why-card.reveal-on-scroll.is-visible  { transition-delay: 400ms; }
+
+/* ----- Price table: header shadow for contrast ----- */
+.price-table thead th {
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* ----- Safety: danger variant for prohibition cards ----- */
+.info-card.danger .icon-wrap {
+  background: rgba(217, 4, 22, 0.12);
+  color: var(--brand-red);
+}
+.info-card.danger {
+  border-top: 3px solid rgba(217, 4, 22, 0.40);
+}
+.info-card.danger:hover {
+  border-color: rgba(217, 4, 22, 0.24);
+  box-shadow: 0 8px 24px rgba(217, 4, 22, 0.09);
+}
+
+/* ----- Popular price grid: subtle premium top accent ----- */
+#popularPriceGrid .price-card,
+#popularGrid .price-card {
+  border-top-width: 3px;
+  border-top-color: rgba(217, 4, 22, 0.20);
+}
+#popularPriceGrid .price-card:hover,
+#popularGrid .price-card:hover {
+  border-top-color: rgba(217, 4, 22, 0.55);
+}
+#popularPriceGrid .price-card.selected,
+#popularGrid .price-card.selected {
+  border-top-color: var(--brand-red);
+}
+
+/* ----- Contact: WhatsApp card hover emphasis ----- */
+.contact-whatsapp-card:hover {
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(37, 211, 102, 0.14);
+}
+
+/* ----- Map block: stronger iframe frame ----- */
+.contact-map-block .rounded-xl,
+#location .rounded-xl {
+  border: 2px solid var(--grey-100);
+  overflow: hidden;
+}
+
+/* ----- Form card: premium shadow ----- */
+.form-card {
+  box-shadow: 0 12px 32px rgba(7, 26, 44, 0.10), 0 2px 8px rgba(7, 26, 44, 0.05);
+}
+
+/* ----- Form focus: tinted background ----- */
+.form-control:focus,
+.form-select:focus {
+  background: #FFFBFB;
+}
+
+/* ----- Why-cards: column layout with icon on top ----- */
+.why-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.why-card h5 {
+  margin: 0;
+}
+@media (max-width: 575px) {
+  .why-card { align-items: center; }
+}
+
+/* ----- Button: clear press feedback ----- */
+.btn-brand-red:active  { transform: translateY(0) scale(0.985); }
+.btn-whatsapp:active   { transform: translateY(0) scale(0.985); }
+.btn-brand-outline:active { transform: translateY(0) scale(0.985); }
+
+/* ----- Nav Reserve CTA: subtle pulse on first load ----- */
+.js.is-loaded .navbar .btn-brand-red {
+  animation: ctaPulse 950ms ease 1.2s 1;
+}
+
+/* ----- Mobile action bar: icon scale on press ----- */
+.mobile-action-bar a:active .ico {
+  transform: scale(0.88);
+  transition: transform 100ms ease;
+}
+
+/* ----- Section eyebrow: red dot accent ----- */
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--brand-red);
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* ----- Size list rows: hover background matches brand ----- */
+.size-list .row-item:hover {
+  background: var(--grey-50);
+  border-left: 3px solid rgba(217, 4, 22, 0.18);
+  padding-left: 15px;
+}
+.size-list .row-item.selected {
+  border-left: 4px solid var(--brand-red);
+}
+/* Undo border-left on hover for already-selected rows */
+.size-list .row-item.selected:hover {
+  border-left: 4px solid var(--brand-red);
+  padding-left: 14px;
+}
+
+/* ----- Alert: collection-only refinement ----- */
+.collection-alert {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ----- Compact info sidebar cards: divider between cards ----- */
+.reserve-info-stack .compact-info-card {
+  border-bottom: 1px solid var(--grey-100);
+}
+.reserve-info-stack .compact-info-card:last-child {
+  border-bottom: 0;
+}
+
+/* ----- Footer: logo area slight gap ----- */
+.site-footer .copyright {
+  margin-top: 28px;
+  padding-top: 20px;
+}
+
+/* =============================================================
+   Print
+   ============================================================= */
 
 /* Print */
 @media print {
