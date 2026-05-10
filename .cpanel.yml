@@ -1,0 +1,20 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/valosyst/public_html/gas.valosystems.co.za
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/find $DEPLOYPATH -mindepth 1 -maxdepth 1 -exec /bin/rm -rf {} +
+    - /bin/cp index.html $DEPLOYPATH/index.html
+    - /bin/cp prices.html $DEPLOYPATH/prices.html
+    - /bin/cp reserve.html $DEPLOYPATH/reserve.html
+    - /bin/cp safety.html $DEPLOYPATH/safety.html
+    - /bin/cp contact.html $DEPLOYPATH/contact.html
+    - /bin/cp favicon.svg $DEPLOYPATH/favicon.svg
+    - /bin/cp robots.txt $DEPLOYPATH/robots.txt
+    - /bin/cp sitemap.xml $DEPLOYPATH/sitemap.xml
+    - /bin/cp .htaccess $DEPLOYPATH/.htaccess
+    - /bin/cp -R assets $DEPLOYPATH/assets
+    - /bin/cp -R api $DEPLOYPATH/api
+    - /bin/cp -R admin $DEPLOYPATH/admin
+    - /bin/find $DEPLOYPATH -type d -exec /bin/chmod 755 {} +
+    - /bin/find $DEPLOYPATH -type f -exec /bin/chmod 644 {} +

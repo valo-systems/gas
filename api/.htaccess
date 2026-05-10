@@ -1,0 +1,4 @@
+# Allow only PHP entrypoints in /api
+<FilesMatch "\.(sql|md|log|env|ini)$">
+  Require all denied
+</FilesMatch>

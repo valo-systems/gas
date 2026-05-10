@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Gas at Midway Mews icon">
+  <rect width="128" height="128" rx="24" fill="#D90416"/>
+  <circle cx="64" cy="48" r="32" fill="#FFFFFF"/>
+  <text x="64" y="61" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800" fill="#D90416">G</text>
+  <rect x="22" y="84" width="84" height="16" rx="8" fill="#FFFFFF"/>
+</svg>

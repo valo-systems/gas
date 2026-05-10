@@ -1,0 +1,44 @@
+# =============================================================
+# Gas @ Midway Mews — Apache config
+# =============================================================
+
+# Pretty error pages from PHP, no directory listings
+Options -Indexes
+
+# Default character set
+AddDefaultCharset UTF-8
+
+# Site-wide favicon fallback for pages without an explicit icon link.
+Redirect 302 /favicon.ico /favicon.svg
+
+# ------------- Security headers -------------
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ------------- Deny access to sensitive files -------------
+<FilesMatch "(^\.|composer\.(json|lock)|\.sql$|\.md$|README)">
+  Require all denied
+</FilesMatch>
+
+# ------------- Redirect HTTP -> HTTPS in production -------------
+# Uncomment when SSL is enabled.
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# ------------- Cache static assets -------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                 "access plus 7 days"
+  ExpiresByType application/javascript   "access plus 7 days"
+  ExpiresByType image/jpeg               "access plus 30 days"
+  ExpiresByType image/png                "access plus 30 days"
+  ExpiresByType image/svg+xml            "access plus 30 days"
+  ExpiresByType image/webp               "access plus 30 days"
+</IfModule>
